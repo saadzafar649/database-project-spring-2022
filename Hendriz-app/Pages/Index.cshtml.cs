@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace hendriz.Pages
+namespace Hendriz_app.Pages
 {
     public class IndexModel : PageModel
     {
