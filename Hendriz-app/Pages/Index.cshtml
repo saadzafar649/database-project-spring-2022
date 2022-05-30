@@ -1,9 +1,12 @@
 ﻿@page
-@*@model IndexModel*@
+@model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
+
+
+<!--Slider-->
 <div class="banner header-text">
     <div class="owl-banner owl-carousel">
         <div class="banner-item-0" style="background-image: url(assets/images/slide_01.jpg);">
@@ -26,3 +29,115 @@
         </div>
     </div>
 </div>
+
+
+<!--Slider end-->
+<!--Latest products-->
+<div class="latest-products">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h2>Latest Products</h2>
+                    <a href="products.html">view all products <i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+            @{
+                for (int i = 0; i < 3; i++)
+                {
+                    string link = "#";
+                    string imagesrc = "https://picsum.photos/500/300?random="+@i.ToString();
+                    Random rand=new Random();
+                    <div class="col-md-4">
+                        <div class="product-item">
+                            <a href=@link><img src=@imagesrc alt=""></a>
+                            <div class="down-content">
+                                <a href=@link>
+                                    <h4>Title goes here</h4>
+                                </a>
+                                <h6>$@(rand.Next(1,100)+Math.Round( rand.NextDouble(),2))</h6>
+                                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+                                <ul class="stars">
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                </ul>
+                                <span>Reviews (24)</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
+<!--Latest products ends-->
+
+
+<!--discounted products-->
+<div class="latest-products">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h2>Discounted Products</h2>
+                    <a href="products.html">view all products <i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+            @{
+                for (int i = 0; i < 3; i++)
+                {
+                    string link = "#";
+                    string imagesrc = "https://picsum.photos/500/300?random=" + @i.ToString();
+                    Random rand = new Random();
+                    <div class="col-md-4">
+                        <div class="product-item">
+                            <a href=@link><img src=@imagesrc alt=""></a>
+                            <div class="down-content">
+                                <a href=@link>
+                                    <h4>Title goes here</h4>
+                                </a>
+                                <h6>$@(rand.Next(1,100)+Math.Round( rand.NextDouble(),2))</h6>
+                                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+                                <ul class="stars">
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                </ul>
+                                <span>Reviews (24)</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<!--discounted products ends-->
