@@ -43,38 +43,31 @@
                 </div>
             </div>
             @{
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < Model.Latestproducts.Count; i++)
                 {
                     string link = "#";
-                    string imagesrc = "https://picsum.photos/500/300?random="+@i.ToString();
-                    Random rand=new Random();
+                    string imagesrc = Model.Latestproducts[i].image;
                     <div class="col-md-4">
                         <div class="product-item">
                             <a href=@link><img src=@imagesrc alt=""></a>
                             <div class="down-content">
                                 <a href=@link>
-                                    <h4>Title goes here</h4>
+                                    <h4>@Model.Latestproducts[i].name</h4>
                                 </a>
-                                <h6>$@(rand.Next(1,100)+Math.Round( rand.NextDouble(),2))</h6>
-                                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+                                <h6>$@Model.Latestproducts[i].price</h6>
+                                <p>@Model.Latestproducts[i].title</p>
+
+                                <p>@Model.Latestproducts[i].watchcount Views</p>
                                 <ul class="stars">
-                                    <li>
-                                        <i class="fa fa-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star"></i>
-                                    </li>
+                                    @{ for (int k = 0; k < Model.Latestproducts[i].stars; k++)
+                                        {
+                                            <li>
+                                                <i class="fa fa-star"></i>
+                                            </li>
+                                        }
+                                    }
                                 </ul>
-                                <span>Reviews (24)</span>
+                                <span>Reviews (@Model.Latestproducts[i].reviewCount)</span>
                             </div>
                         </div>
                     </div>
@@ -82,9 +75,7 @@
             }
         </div>
     </div>
-</div>
-
-
+</div> 
 <!--Latest products ends-->
 
 
