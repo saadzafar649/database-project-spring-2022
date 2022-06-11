@@ -33,7 +33,7 @@ namespace Hendriz_app.Pages.User
 
                 //reading data of particular product
                 OracleCommand cmd = new OracleCommand();
-                cmd.CommandText = "select * from Product";
+                cmd.CommandText = string.Format("select * from Product Where ProductId = {0}", id);
                 cmd.Connection = con;
                 con.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
@@ -41,14 +41,13 @@ namespace Hendriz_app.Pages.User
                 {
                     if (reader.Read())
                     {
-                        Product temp = new Product();
-                        temp.Id = int.Parse(reader["ProductId"].ToString());
-                        temp.name = (reader["productName"].ToString());
-                        temp.title = (reader["productTitle"].ToString());
-                        temp.image = (reader["imageLink"].ToString());
-                        temp.category = (reader["productCategory"].ToString());
-                        temp.description = (reader["productDescription"].ToString());
-                        temp.price = int.Parse(reader["watchCount"].ToString());
+                        item.Id = int.Parse(reader["ProductId"].ToString());
+                        item.name = (reader["productName"].ToString());
+                        item.title = (reader["productTitle"].ToString());
+                        item.image = (reader["imageLink"].ToString());
+                        item.category = (reader["productCategory"].ToString());
+                        item.description = (reader["productDescription"].ToString());
+                        item.price = int.Parse(reader["watchCount"].ToString());
                         
                     }
                 }
