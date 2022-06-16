@@ -12,7 +12,7 @@ namespace Hendriz_app.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -28,7 +28,7 @@ namespace Hendriz_app.Pages
         {
             OracleConnection con = new OracleConnection(Data.Connection.connection_string);
             OracleCommand cmd = new OracleCommand();
-            cmd.CommandText = "select * from Product";
+            cmd.CommandText = "select * from ProductCard";
             cmd.Connection = con;
             con.Open();
             OracleDataReader reader = cmd.ExecuteReader();
@@ -42,8 +42,9 @@ namespace Hendriz_app.Pages
                     temp.title = (reader["productTitle"].ToString());
                     temp.image = (reader["imageLink"].ToString());
                     temp.watchcount = int.Parse(reader["watchCount"].ToString());
+                    //temp.stars = int.Parse(reader["Stars"].ToString());
                     Latestproducts.Add(temp);
-                    
+
                 }
             }
             else
@@ -51,5 +52,22 @@ namespace Hendriz_app.Pages
             }
             con.Close();
         }
+        public async Task<IActionResult> OnPostGenerateWebName(string returnUrl = null)
+        {
+            CreateWebName();
+            
+            // all  done
+            return Page();
+        }
+
+
+        private void CreateWebName()
+        {
+            ModelState.Clear();
+            getProductCards();
+            Latestproducts[0].title = "asdasdsad";
+            Response.Redirect(Request.Path);
+        }
+
     }
 }

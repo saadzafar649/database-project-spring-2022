@@ -376,6 +376,8 @@ C:\Users\Saad\Desktop\database-project-spring-2022\Hendriz-app\obj\Debug\net5.0\
 C:\Users\Saad\Desktop\database-project-spring-2022\Hendriz-app\obj\Debug\net5.0\ref\Hendriz-app.dll
 C:\Users\Saad\Desktop\database-project-spring-2022\Hendriz-app\obj\Debug\net5.0\Hendriz-app.pdb
 C:\Users\Saad\Desktop\database-project-spring-2022\Hendriz-app\obj\Debug\net5.0\Hendriz-app.genruntimeconfig.cache
-C:\Users\Saad\Desktop\database-project-spring-2022\Hendriz-app\obj\Debug\net5.0\Razor\Pages\User\Item.cshtml.g.cs
 C:\Users\Saad\Desktop\database-project-spring-2022\Hendriz-app\obj\Debug\net5.0\Razor\Pages\User\Product.cshtml.g.cs
 C:\Users\Saad\Desktop\database-project-spring-2022\Hendriz-app\bin\Debug\net5.0\wwwroot\css\hendriz.css
+C:\Users\Saad\Desktop\database-project-spring-2022\Hendriz-app\obj\Debug\net5.0\Razor\Pages\Components\_ProductCard.cshtml.g.cs
+C:\Users\Saad\Desktop\database-project-spring-2022\Hendriz-app\obj\Debug\net5.0\Razor\Pages\User\AboutUs.cshtml.g.cs
+C:\Users\Saad\Desktop\database-project-spring-2022\Hendriz-app\obj\Debug\net5.0\Razor\Pages\User\ContactUs.cshtml.g.cs

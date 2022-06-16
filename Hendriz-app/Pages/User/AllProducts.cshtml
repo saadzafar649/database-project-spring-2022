@@ -1,0 +1,57 @@
+﻿@page
+@model Hendriz_app.Pages.User.AllProductsModel
+@{
+}
+
+
+
+<!--Main slider image-->
+<div class="page-heading header-text" style="background-image: url(/assets/images/allproducts.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-content">
+                    <h4>new arrivals</h4>
+                    <h2>Hendriz</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Product categories and their cards-->
+<div class="products">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="filters">
+                    <ul>
+                        <li class="active" data-filter="*">All Products</li>
+                        @{
+                            foreach (var i in Model.allCategories)
+                            {
+                                <li data-filter="a@i.Key">@i.Value</li>
+                            }
+                        }
+                    </ul>
+
+
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="filters-content">
+                    <div class="row grid">
+                        @for (int i = 0; i < Model.allProducts.Count; i++)
+                         {
+                            <div class="col-md-4 all a@Model.allProducts[i].category">
+                                @await Html.PartialAsync("~/Pages/Components/_ProductCard.cshtml", Model.allProducts[i])
+                            </div>
+                         }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

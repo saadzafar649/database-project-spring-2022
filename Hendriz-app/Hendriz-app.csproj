@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\User\products.cshtml" />
+    <Content Remove="Pages\User\AllProducts.cshtml" />
     <Content Remove="wwwroot\assets\images\slide_01.jpg" />
     <Content Remove="wwwroot\assets\images\slide_02.jpg" />
     <Content Remove="wwwroot\assets\images\slide_03.jpg" />
@@ -16,7 +16,7 @@
   <ItemGroup>
     <None Include="Pages\Shared\_Layout.cshtml" />
     <None Include="Pages\Shared\_ValidationScriptsPartial.cshtml" />
-    <None Include="Pages\User\products.cshtml" />
+    <None Include="Pages\User\AllProducts.cshtml" />
     <None Include="wwwroot\assets\images\slide_01.jpg" />
     <None Include="wwwroot\assets\images\slide_02.jpg" />
     <None Include="wwwroot\assets\images\slide_03.jpg" />
@@ -58,17 +58,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\User\products.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\User\products.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\User\AllProducts.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Update="wwwroot\css\hendriz.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\User\AllProducts.cshtml" />
   </ItemGroup>
 
 </Project>

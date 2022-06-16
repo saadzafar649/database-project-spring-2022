@@ -1,0 +1,25 @@
+﻿@model Models.ProductCard
+
+
+    <div class="product-item">
+        <a href='/User/Product?id=@Model.Id'><img src=@Model.image alt=""></a>
+        <div class="down-content">
+            <a href='/User/Product?id=@Model.Id'>
+                <h4>@Model.name</h4>
+            </a>
+            <h6>$@Model.price</h6>
+            <p>@Model.title</p>
+
+            <p>@Model.watchcount Views</p>
+            <ul class="stars">
+                @{ for (int k = 0; k < Model.stars; k++)
+                {
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+                }
+                }
+            </ul>
+            <span>Reviews (@Model.reviewCount)</span>
+        </div>
+    </div>

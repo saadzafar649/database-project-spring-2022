@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Hendriz_app.Pages.User
 {
-    public class ItemModel : PageModel
+    public class ContactUsModel : PageModel
     {
         public void OnGet()
         {

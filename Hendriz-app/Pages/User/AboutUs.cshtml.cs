@@ -7,11 +7,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Hendriz_app.Pages.User
 {
-    public class productsModel : PageModel
+    public class AboutUsModel : PageModel
     {
         public void OnGet()
         {
-
         }
     }
 }
