@@ -26,31 +26,38 @@ namespace Hendriz_app.Pages
         }
         void getProductCards()
         {
-            OracleConnection con = new OracleConnection(Data.Connection.connection_string);
-            OracleCommand cmd = new OracleCommand();
-            cmd.CommandText = "select * from ProductCard";
-            cmd.Connection = con;
-            con.Open();
-            OracleDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows)
+            
             {
-                while (reader.Read())
+                OracleConnection con = new OracleConnection(Data.Connection.connection_string);
+                OracleCommand cmd = new OracleCommand();
+                cmd.CommandText = "select * from ProductCard";
+                cmd.Connection = con;
+                con.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
                 {
-                    ProductCard temp = new ProductCard();
-                    temp.Id = int.Parse(reader["ProductId"].ToString());
-                    temp.name = (reader["productName"].ToString());
-                    temp.title = (reader["productTitle"].ToString());
-                    temp.image = (reader["imageLink"].ToString());
-                    temp.watchcount = int.Parse(reader["watchCount"].ToString());
-                    //temp.stars = int.Parse(reader["Stars"].ToString());
-                    Latestproducts.Add(temp);
+                    while (reader.Read())
+                    {
+                        ProductCard temp = new ProductCard();
+                        temp.Id = int.Parse(reader["ProductId"].ToString());
+                        temp.name = (reader["productName"].ToString());
+                        temp.title = (reader["productTitle"].ToString());
+                        temp.image = (reader["imageLink"].ToString());
+                        temp.watchcount = int.Parse(reader["watchCount"].ToString());
+                        temp.stars = int.Parse(((reader["Stars"].ToString()=="")?"0": reader["Stars"].ToString()));
+                        Latestproducts.Add(temp);
 
+                    }
                 }
+                else
+                {
+                }
+                con.Close();
             }
-            else
+            
             {
+
             }
-            con.Close();
         }
         public async Task<IActionResult> OnPostGenerateWebName(string returnUrl = null)
         {

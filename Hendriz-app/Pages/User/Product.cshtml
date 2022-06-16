@@ -3,11 +3,76 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<div class="page-heading header-text" style="background-image: url(@Model.item.image);height:900px">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+@*<div class="page-heading header-text" style="background-image: url(@Model.item.image);height:900px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                </div>
             </div>
         </div>
-    </div>
+    </div>*@
+<div style="height:100px"></div>
+
+<div class="container-fluid" style="margin-bottom:10px;margin-left:10px">
+    >
+    <a href="/User/AllProducts">Products</a>/@Model.item.category/@Model.item.name
 </div>
+<div class="container">
+    <div class="col">
+        <div class="row">
+            <div class="col-sm">
+                <img src="@Model.item.image" class="img" alt="Responsive image">
+            </div>
+            <div class="col-sm">
+                <div style="height:10px"></div>
+                <h5>@Model.item.title</h5>
+                <div style="height:20px"></div>
+                <h6 style="color:gray">@Model.item.name</h6>
+                <div style="height:30px"></div>
+                <p style="color:black">Price: $@Model.item.price</p>
+
+                <div style="height:20px"></div>
+
+                <h6>Colors:</h6>
+
+                <div class="list-group list-group-horizontal" role="tablist">
+                                
+                    @for (int i = 0; i < Model.item.colors.Count; i++)
+                    {
+                        <a class="list-group-item list-group-item-action"  data-toggle="list" >
+                            <div style="height:30px;width:20px;background-color:@Model.item.colors[i].color;cursor:pointer;">
+                            </div>
+                        </a>
+
+                    }
+                </div>
+
+                <h6 id="avail">Available pcs: </h6>
+                <h6>Quantity:</h6>
+
+                <div style="height:20px"></div>
+
+
+            </div>
+        </div>
+        <div style="height:20px"></div>
+        <h5>Description : </h5>
+
+        <p>@Model.item.description</p>
+    </div>
+
+</div>
+
+
+
+    <script>
+    var available = 3;
+    var quantity = 0;
+    available =@Model.item.price;
+    document.getElementById("avail").innerHTML = "Available pcs:" + available.toString();
+    function chooseColor(color1) {
+        available++;
+        let avl = available.toString();
+        document.getElementById("avail").innerHTML = "Available pcs: " + avl.toString();
+    }
+    </script>
