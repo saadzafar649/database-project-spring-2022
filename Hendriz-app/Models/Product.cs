@@ -19,6 +19,7 @@ namespace Hendriz_app.Models
         public string description;
         public int price = 0;
         public string image;
+        public int discount = 0;
         public List<Color> colors = new List<Color>();
         public List<Review> reviews = new List<Review>();
     }

@@ -39,6 +39,7 @@ namespace Hendriz_app.Pages.User
                         item.image = (reader["imageLink"].ToString());
                         item.category = (reader["productCategory"].ToString());
                         item.watchcount = int.Parse(reader["watchCount"].ToString());
+                        item.price = int.Parse(reader["price"].ToString());
                         allProducts.Add(item);
 
                         allCategories[reader["productCategory"].ToString()] = reader["CategoryName"].ToString();

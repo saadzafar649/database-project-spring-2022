@@ -1,7 +1,7 @@
 ﻿@page
 @model Hendriz_app.Pages.User.ProductModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = Model.item.name;
 }
 @*<div class="page-heading header-text" style="background-image: url(@Model.item.image);height:900px">
         <div class="container">
@@ -13,15 +13,39 @@
     </div>*@
 <div style="height:100px"></div>
 
+<div class="toast-container">
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i class="fa fa-apple"></i>
+                <strong class="me-auto">@Model.item.name</strong>
+                <small>now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container-fluid" style="margin-bottom:10px;margin-left:10px">
     >
     <a href="/User/AllProducts">Products</a>/@Model.item.category/@Model.item.name
 </div>
+
+@if (Model.item.discount != 0)
+{
+    <div class="alert alert-danger" role="alert">
+        Speacial Discount of @Model.item.discount % on @Model.item.name .Order now and get your discount. This is a limited time offer
+    </div>
+}
+
+
 <div class="container">
     <div class="col">
         <div class="row">
             <div class="col-sm">
-                <img src="@Model.item.image" class="img" alt="Responsive image">
+                <img src="@Model.item.image" class="img" alt="Responsive image" style="max-height: 700px; max-width :inherit">
             </div>
             <div class="col-sm">
                 <div style="height:10px"></div>
@@ -29,50 +53,145 @@
                 <div style="height:20px"></div>
                 <h6 style="color:gray">@Model.item.name</h6>
                 <div style="height:30px"></div>
-                <p style="color:black">Price: $@Model.item.price</p>
+
+                @if (Model.item.discount != 0)
+                {
+                    int discountedprice = Model.item.price - Model.item.price * (Model.item.discount) / 100;
+                    <p style="color:red">
+                        Price:
+                        <s>$@Model.item.price</s> now $@discountedprice at @Model.item.discount % off
+                    </p>
+                }
+                else
+                {
+                    <p style="color:black">Price: $@Model.item.price</p>
+                }
+
+
 
                 <div style="height:20px"></div>
 
                 <h6>Colors:</h6>
 
-                <div class="list-group list-group-horizontal" role="tablist">
-                                
+                <div class="list-group list-group-horizontal list-group-flush" id="list-tab" role="tablist">
+
                     @for (int i = 0; i < Model.item.colors.Count; i++)
                     {
-                        <a class="list-group-item list-group-item-action"  data-toggle="list" >
-                            <div style="height:30px;width:20px;background-color:@Model.item.colors[i].color;cursor:pointer;">
-                            </div>
-                        </a>
+                        if (Model.item.colors[i].quantity != 0)
+                        {
 
+                            <button class="list-group-item list-group-item-action" id="list-home-list" data-bs-toggle="list" role="tab" aria-controls="list-home" style="width:25px;padding:1px">
+                                <div style="height:30px;width:20px;background-color:@Model.item.colors[i].color;color:@Model.item.colors[i].color;cursor:pointer;" onclick="changecolor( '@Model.item.colors[i].color')">
+                                </div>
+                            </button>
+
+                        }
                     }
                 </div>
 
-                <h6 id="avail">Available pcs: </h6>
                 <h6>Quantity:</h6>
 
+
                 <div style="height:20px"></div>
+                <form>
+                    <div class="row-cols-6">
+                        <button type="button" onclick="changevalue('decrement')">
+                            <i class="fa fa-minus"></i>
+                        </button>
 
+                        <input type="number" disabled id='quantity' max="100" value="0" />
 
+                        <button type="button" onclick="changevalue('increment')">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+
+                    <div style="height:20px"></div>
+
+                    <h6 id="avail">Estimated price: $0</h6>
+                    <div style="height:20px"></div>
+
+                    <button type="button" onclick="temp()" style="background-color:black;color:white;height:50px">
+                        <i class="fa fa-plus"></i>Add to Cart
+                    </button>
+
+                    <div style="height:20px"></div>
+                </form>
             </div>
         </div>
         <div style="height:20px"></div>
         <h5>Description : </h5>
 
-        <p>@Model.item.description</p>
+        <div class=""> @Model.item.description</div>
     </div>
 
 </div>
 
 
 
-    <script>
-    var available = 3;
-    var quantity = 0;
-    available =@Model.item.price;
-    document.getElementById("avail").innerHTML = "Available pcs:" + available.toString();
-    function chooseColor(color1) {
-        available++;
-        let avl = available.toString();
-        document.getElementById("avail").innerHTML = "Available pcs: " + avl.toString();
+<script>
+    var available = 0;
+    var max = 0;
+    var quantity = document.getElementById("quantity");
+    var color = "";
+    var price = parseInt('@Model.item.price');
+    var discount = parseInt('@Model.item.discount');
+
+    //if(@Model.item.colors.Count != 0)
+        @*changecolor(@Model.item.colors[0].quantity);*@
+
+    function changecolor(color) {
+        max = 30;
+        this.color = color.toString();
+        document.getElementById("quantity").value = 1;
     }
-    </script>
+
+    function changevalue(id) {
+        let quantityelement = document.getElementById("quantity");
+        if (id == "increment") {
+            if (quantity.value < max) {
+                quantity.value = parseInt(quantity.value) + 1;
+            }
+        }
+        else {
+            if (quantity.value > 1) {
+                quantity.value = parseInt(quantity.value)  - 1;
+            }
+        }
+    }
+
+    function temp() {
+        if (quantity.value == 0) {
+
+            document.getElementsByClassName('toast-body')[0].innerHTML = 'please select an item';
+            $(document).ready(function () {
+                $('.toast').toast('show');
+            });
+            return 0;
+        }
+        $.ajax({
+            url: 'Product?handler=AddToCart',
+            type: "GET",
+            data: {
+                "color": this.color,
+                "quantity": quantity.value
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                window.location.replace('/Auth/Login');
+            }
+        })
+            .done(function (result) {
+                if (result["status"] = '1') {
+                    document.getElementsByClassName('toast-body')[0].innerHTML = quantity.value.toString() + ' of ' + '@Model.item.name' + ' of ' + color.toString() + ' color has been added to your cart';
+                    $(document).ready(function () {
+                        $('.toast').toast('show');
+                    });
+
+                    document.getElementById("quantity").value = 0;
+                }
+            })
+            .fail(function (result) {
+                console.log(result);
+            });
+    }
+</script>

@@ -44,6 +44,7 @@ namespace Hendriz_app.Pages
                         temp.title = (reader["productTitle"].ToString());
                         temp.image = (reader["imageLink"].ToString());
                         temp.watchcount = int.Parse(reader["watchCount"].ToString());
+                        temp.price = int.Parse(reader["price"].ToString());
                         temp.stars = int.Parse(((reader["Stars"].ToString()=="")?"0": reader["Stars"].ToString()));
                         Latestproducts.Add(temp);
 

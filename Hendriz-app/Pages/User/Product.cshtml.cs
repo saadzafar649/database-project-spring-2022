@@ -12,14 +12,13 @@ namespace Hendriz_app.Pages.User
     {
 
         public Product item = new Product();
-        public void OnGet(int id=1)
+        public string helper = "0";
+        public void OnGet(int id)
         {
             getProduct(id);
         }
         void getProduct(int id)
         {
-            item.Id = id;
-
             try
             {
 
@@ -51,7 +50,8 @@ namespace Hendriz_app.Pages.User
                         item.image = (reader["imageLink"].ToString());
                         item.category = (reader["CategoryName"].ToString());
                         item.description = (reader["productDescription"].ToString());
-                        item.price = int.Parse(reader["watchCount"].ToString());
+                        item.price = int.Parse(reader["price"].ToString());
+                        item.discount = int.Parse(reader["discount"].ToString());
                     }
                 }
                 else
@@ -62,6 +62,10 @@ namespace Hendriz_app.Pages.User
             catch
             {
 
+            }
+            if (item.price == 0)
+            {
+                Response.Redirect("/User/AllProducts");
             }
             getColor(id);
         }
@@ -97,8 +101,30 @@ namespace Hendriz_app.Pages.User
             }
             catch
             {
-
+                Response.Redirect("/User/Products");
             }
+
+        }
+
+        public void sethelper(string val)=>helper = val;
+
+        public void OnPostAddToCart1(string color, int quantity)
+        {
+            Console.WriteLine(color);
+            Console.WriteLine(quantity);
+        }
+        public JsonResult OnGetAddToCart(string color,int quantity)
+        {
+            if (Data.Auth.isLoggedin() == -1)
+            {
+                return new JsonResult("{status:0,redirect:/Auth/Login}", System.Net.HttpStatusCode.Forbidden);
+            }
+            else
+            {
+
+                Response.Redirect("/");
+            }
+            return new JsonResult("{status:1}");
         }
     }
 }
