@@ -119,11 +119,6 @@ namespace Hendriz_app.Pages.User
             {
                 return new JsonResult("{status:0,redirect:/Auth/Login}", System.Net.HttpStatusCode.Forbidden);
             }
-            else
-            {
-
-                Response.Redirect("/");
-            }
             return new JsonResult("{status:1}");
         }
     }
