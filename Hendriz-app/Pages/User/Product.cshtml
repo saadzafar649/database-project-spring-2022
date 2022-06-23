@@ -77,15 +77,10 @@
 
                     @for (int i = 0; i < Model.item.colors.Count; i++)
                     {
-                        if (Model.item.colors[i].quantity != 0)
-                        {
-
-                            <button class="list-group-item list-group-item-action" id="list-home-list" data-bs-toggle="list" role="tab" aria-controls="list-home" style="width:25px;padding:1px">
-                                <div style="height:30px;width:20px;background-color:@Model.item.colors[i].color;color:@Model.item.colors[i].color;cursor:pointer;" onclick="changecolor( '@Model.item.colors[i].color')">
-                                </div>
-                            </button>
-
-                        }
+                        <button class="list-group-item list-group-item-action" id="list-home-list" data-bs-toggle="list" role="tab" aria-controls="list-home" style="width:25px;padding:1px">
+                            <div style="height:30px;width:20px;background-color:@Model.item.colors[i].color;color:@Model.item.colors[i].color;cursor:pointer;" onclick="changecolor( '@Model.item.colors[i].color')">
+                            </div>
+                        </button>
                     }
                 </div>
 
@@ -129,6 +124,90 @@
 
 
 
+<div style="height:40px"></div>
+
+
+
+<div class="row justify-content-center">
+    <div class="col-10" style="background-color:whitesmoke;border-radius:30px">
+        <div style="height:20px"></div>
+        <h6 class="row" style="margin-left:50px ">Reviews</h6>
+
+        <div class="dropdown-divider"></div>
+        <div style="height:10px"></div>
+
+
+
+        @if (!Model.haveReviewed)
+        {
+            <div class="row items" id="reviewbox" style="margin:0">
+                <div class="col-lg-3" style="background-color:whitesmoke;">
+
+                    <div class="row-cols-6">
+                        <div>Stars</div>
+                        <button type="button" onclick="changestars('decrement')">
+
+                            <i class="fa fa-minus"></i>
+                        </button>
+
+                        <input type="number" disabled id='stars' max="5" value="5" />
+
+                        <button type="button" onclick="changestars('increment')">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="col" style="background-color:whitesmoke;">
+                    <textarea id="review" cols="80" rows="5" wrap="soft"></textarea>
+                </div>
+                <div class="col-lg-2" style="background-color:whitesmoke;">
+                    <div class="row justify-content-center">
+                        <button onclick="giveReview(this)" style="width:170px;height:35px;margin-top:40px;border-radius:30px;background-color:rgb(255 106 0)">Give Review</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown-divider"></div>
+        }
+
+
+        @for (int i = 0; i < @Model.reviews.Count; i++)
+        {
+            <div class="row items" style="margin:0">
+                <div class="col-lg-3" style="background-color:whitesmoke;">
+                    <div class="container" style="margin-top: 10px; margin-bottom: 10px; ">
+                        @Model.reviews[i].name
+                    </div>
+                    <div class="container" style="margin-top: 10px; margin-bottom: 10px; ">
+                        @Model.reviews[i].timestamp
+                    </div>
+                </div>
+                <div class="col" style="background-color:whitesmoke;">
+                    <div class="container" style="margin-top: 30px; ">
+                        <p> @Model.reviews[i].review</p>
+                    </div>
+                </div>
+                <div class="col-lg-2" style="background-color:whitesmoke;">
+                    <div class="container text-lg-end" id="price" style="margin-top: 30px; ">
+                        @for (int j = 0; j < @Model.reviews[i].stars; j++)
+                        {
+                            <div class="fa fa-star" style="color:orange"></div>
+                        }
+                    </div>
+                    <div class="container text-lg-end">
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+            </div>
+        }
+
+        <div style="height:40px"></div>
+    </div>
+</div>
+
+
+
 <script>
     var available = 0;
     var max = 0;
@@ -148,7 +227,6 @@
     }
 
     function changevalue(id) {
-        let quantityelement = document.getElementById("quantity");
         if (id == "increment") {
             if (quantity.value < max) {
                 quantity.value = parseInt(quantity.value) + 1;
@@ -177,14 +255,14 @@
             type: "GET",
             data: {
                 "color": this.color,
-                "quantity": quantity.value
+                "quantity": quantity.value,
+                "productid":'@Model.item.Id'
             },
             error: function (xhr, textStatus, errorThrown) {
                 window.location.replace('/Auth/Login');
             }
         })
             .done(function (result) {
-                if (result["status"] = '1') {
                     document.getElementsByClassName('toast-body')[0].innerHTML = quantity.value.toString() + ' of ' + '@Model.item.name' + ' of ' + color.toString() + ' color has been added to your cart';
                     $(document).ready(function () {
                         $('.toast').toast('show');
@@ -192,7 +270,44 @@
                     document.getElementById("avail").innerHTML = "Estimated price: $0";
 
                     document.getElementById("quantity").value = 0;
-                }
+            })
+            .fail(function (result) {
+                console.log(result);
+            });
+    }
+
+
+    function changestars(id) {
+        var stars = document.getElementById("stars");
+        if (id == "increment") {
+            if (stars.value < 5){
+                stars.value = parseInt(stars.value) + 1;
+            }
+        }
+        else {
+            if (stars.value > 1) {
+                stars.value = parseInt(stars.value) - 1;
+            }
+        }
+    }
+
+    function giveReview(element1) {
+        var stars = document.getElementById('stars');
+        var review = document.getElementById('review');
+
+        $.ajax({
+            url: 'Product?handler=AddReview',
+            type: "GET",
+            data: {
+                "review": review.value,
+                "stars": stars.value,
+                "productid":'@Model.item.Id'
+            },
+            error: function (xhr, textStatus, errorThrown) {
+            }
+        })
+            .done(function (result) {
+                window.location.reload();
             })
             .fail(function (result) {
                 console.log(result);

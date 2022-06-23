@@ -1,5 +1,13 @@
 ﻿@{ 
-    Dictionary<string,bool> keyValuePairs= new Dictionary<string, bool>();
+    Dictionary<string,string> isactive= new Dictionary<string, string>();
+    isactive.Add("Home", "");
+    isactive.Add("Our Products", "");
+    isactive.Add("About Us", "");
+    isactive.Add("Contact Us", "");
+    isactive.Add("Profile", "");
+    isactive.Add("Search", "");
+    if (@ViewData["Title"] != null && isactive.ContainsKey(@ViewData["Title"].ToString()))
+        isactive[@ViewData["Title"].ToString()]= "active";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +34,7 @@
 
 
 </head>
-<body>
+<body style="background-color:rgb(12 149 197 / 0.2)">
 
     <header class="">
         <nav class="navbar navbar-expand-lg">
@@ -37,22 +45,35 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item @isactive["Home"]">
                             <a class="nav-link" href="/">
                                 Home
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @isactive["Our Products"]">
                             <a class="nav-link" href="/User/AllProducts">Our Products</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @isactive["About Us"]">
                             <a class="nav-link" href="/User/AboutUs">About Us</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @isactive["Contact Us"]">
                             <a class="nav-link" href="/User/ContactUs">Contact Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Admin/">admin</a>
+                        @if (Data.Auth.isLoggedin() != -1)
+                        {
+                            <li class="nav-item @isactive["Profile"]">
+                                <a class="nav-link" href="/User/Profile">Profile</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Auth/Login">Login</a>
+                            </li>
+                        }
+
+                        <li class="nav-item  @isactive["Search"]">
+                            <a class="nav-link" href="/User/Search">Search</a>
                         </li>
                     </ul>
                 </div>

@@ -26,7 +26,7 @@ namespace Hendriz_app.Pages
         }
         void getProductCards()
         {
-            
+            try
             {
                 OracleConnection con = new OracleConnection(Data.Connection.connection_string);
                 OracleCommand cmd = new OracleCommand();
@@ -46,8 +46,8 @@ namespace Hendriz_app.Pages
                         temp.watchcount = int.Parse(reader["watchCount"].ToString());
                         temp.price = int.Parse(reader["price"].ToString());
                         temp.stars = int.Parse(((reader["Stars"].ToString()=="")?"0": reader["Stars"].ToString()));
+                        temp.reviewCount = int.Parse(reader["reviewcount"].ToString());
                         Latestproducts.Add(temp);
-
                     }
                 }
                 else
@@ -55,26 +55,10 @@ namespace Hendriz_app.Pages
                 }
                 con.Close();
             }
-            
+            catch
             {
 
             }
-        }
-        public async Task<IActionResult> OnPostGenerateWebName(string returnUrl = null)
-        {
-            CreateWebName();
-            
-            // all  done
-            return Page();
-        }
-
-
-        private void CreateWebName()
-        {
-            ModelState.Clear();
-            getProductCards();
-            Latestproducts[0].title = "asdasdsad";
-            Response.Redirect(Request.Path);
         }
 
     }

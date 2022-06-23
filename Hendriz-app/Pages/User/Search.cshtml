@@ -1,0 +1,77 @@
+﻿@page
+@model Hendriz_app.Pages.User.SearchModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+
+<div style="height:100px"></div>
+<div class="container" style="width:max-content">
+    <div class="row" style="max-width:400px">
+        <input type="text" class="form-control" id="searchquery" placeholder="Enter text to search"
+               oninput="search(this.value)"
+               aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+               style="border-radius:30px"
+               autofocus />
+    </div>
+</div>
+
+<div style="height:40px"></div>
+
+<div class="products">
+    <div class="container">
+
+        <div class="row" id="searchdata">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function create(htmlStr) {
+        var frag = document.createDocumentFragment(),
+            temp = document.createElement('div');
+        temp.innerHTML = htmlStr;
+
+        while (temp.firstChild) {
+            frag.appendChild(temp.firstChild);
+        }
+        return frag;
+    }
+
+    function search(value) {
+
+        console.log(value);
+        $.ajax({
+            url: 'Search?handler=SearchItems',
+            type: "GET",
+            data: {
+                searchQuery: value
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        })
+            .done(function (result) {
+                var data = JSON.parse(result);
+
+                var element = document.getElementById('searchdata');
+                element.innerHTML = "";
+                for (var i = 0; i < data.items.length; i++) {
+                    var str = "<div class='col-md-4'><div class='product-item'><img src=" + data.items[i].image + " style='max-height:400px;max-width:400px;'><div class='down-content'><a href='/User/Product?id=" + data.items[i].id + "'><h4>" + data.items[i].name + "</h4></a><h6>$" + data.items[i].price + "</h6><p>" + data.items[i].title + "</p><p>" + data.items[i].watchcount + " Views</p><ul class='stars'>";
+                    for (var j = 0; j < parseInt(data.items[i].Stars); j++) {
+                        str += "<li><i class='fa fa-star'></i></li>";
+                    }
+                    str += "</ul><span>Reviews (" + data.items[i].reviewCount + ")</span></div></div></div></div>";
+                    element.appendChild(create(str));
+                }
+
+                if (data.items.length == 0) element.innerHTML = "<h3>No data found</h3>"
+            }
+            )
+            .fail(function (result) {
+                console.log(result);
+            }
+            );
+    }
+</script>

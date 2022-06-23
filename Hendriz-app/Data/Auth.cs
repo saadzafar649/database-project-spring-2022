@@ -54,6 +54,10 @@ namespace Hendriz_app.Data
                     Auth.type = type.Value.ToString();
 
                 }
+                else
+                {
+                    return false;
+                }
             }
             catch
             {
@@ -67,6 +71,6 @@ namespace Hendriz_app.Data
             type = "";
         }
 
-        public static int isLoggedin()=> id;
+        public static int isLoggedin() { return id; }
     }
 }

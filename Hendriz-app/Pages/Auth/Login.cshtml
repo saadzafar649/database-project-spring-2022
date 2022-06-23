@@ -27,21 +27,22 @@
 
 
         <div class="right">
-            <h5>Login</h5>
-            <p>Don't have an account? <a href="#">Create Your Account</a> it takes less than a minute</p>
-            <div class="inputs">
-                <input id="username" type="text" placeholder="user name">
+                <h5>Login</h5>
+                <p>Don't have an account? <a href="#">Create Your Account</a> it takes less than a minute</p>
+                <div class="inputs">
+                    <input id="username" type="text" placeholder="user name">
+                    <br>
+                    <input id="password" type="password" placeholder="password">
+                </div>
+
+                <br><br>
+
+                <div class="remember-me--forget-password">
+                </div>
+
                 <br>
-                <input id="password" type="password" placeholder="password">
-            </div>
-
-            <br><br>
-
-            <div class="remember-me--forget-password">
-            </div>
-
-            <br>
-            <button onclick="authenticate()">Login</button>
+                <button onclick="authenticate()" type="submit">Login</button>
+            
         </div>
 
     </div>
@@ -54,16 +55,13 @@
         function authenticate() {
             $.ajax({
                 url: 'Login?handler=Authenticate',
-                type: "POST",
+                type: "GET",
                 data: {
                     "username": document.getElementById('username').value,
                     "password": document.getElementById('password').value
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     console.log(errorThrown);
-                },headers: {
-                    RequestVerificationToken:
-                        $('input:hidden[name="__RequestVerificationToken"]').val()
                 }
             })
                 .done(function (result) {

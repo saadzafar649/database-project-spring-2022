@@ -7,9 +7,9 @@ namespace Hendriz_app.Models
 {
     public class Review
     {
-        string name;
-        string review;
-        string stars;
-        string timestamp;
+        public string name { get; set; }
+        public string review { get; set; }
+        public int stars { get; set; }
+        public string timestamp { get; set; }
     }
 }

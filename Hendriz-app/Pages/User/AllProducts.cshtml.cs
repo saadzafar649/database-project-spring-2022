@@ -16,7 +16,7 @@ namespace Hendriz_app.Pages.User
         public Dictionary<string, string> allCategories = new();
         public void OnGet()
         {
-            try
+            
             {
 
                 OracleConnection con = new OracleConnection(Data.Connection.connection_string);
@@ -24,7 +24,7 @@ namespace Hendriz_app.Pages.User
 
                 //reading data of all products
                 OracleCommand cmd = new OracleCommand(); 
-                cmd.CommandText = string.Format("select * from Product Left Join CategoryTable on productCategory = CategoryId");
+                cmd.CommandText = string.Format("select * from ProductCard P Left Join CategoryTable C on P.productCategory = C.CategoryId");
                 cmd.Connection = con;
                 con.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
@@ -40,6 +40,8 @@ namespace Hendriz_app.Pages.User
                         item.category = (reader["productCategory"].ToString());
                         item.watchcount = int.Parse(reader["watchCount"].ToString());
                         item.price = int.Parse(reader["price"].ToString());
+                        item.stars = int.Parse(((reader["Stars"].ToString() == "") ? "0" : reader["Stars"].ToString()));
+                        item.reviewCount = int.Parse(reader["reviewcount"].ToString());
                         allProducts.Add(item);
 
                         allCategories[reader["productCategory"].ToString()] = reader["CategoryName"].ToString();
@@ -50,8 +52,9 @@ namespace Hendriz_app.Pages.User
                 }
                 con.Close();
             }
-            catch
+            
             {
+                Console.WriteLine(allProducts.Count);
 
             }
         }

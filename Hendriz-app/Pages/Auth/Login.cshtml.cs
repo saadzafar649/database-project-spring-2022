@@ -15,7 +15,7 @@ namespace Hendriz_app.Pages.Auth
         }
 
 
-        public JsonResult OnPostAuthenticate(string username,string password) {
+        public JsonResult OnGetAuthenticate(string username,string password) {
             if (!Data.Auth.Login(username, password))
             {
                 return new JsonResult("{status:0,redirect:/Auth/Login}", System.Net.HttpStatusCode.Forbidden);
