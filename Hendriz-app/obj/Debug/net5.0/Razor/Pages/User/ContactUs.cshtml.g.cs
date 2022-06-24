@@ -19,8 +19,15 @@ using Hendriz_app;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\Saad\Desktop\database-project-spring-2022\Hendriz-app\Pages\_ViewImports.cshtml"
+using System.Diagnostics;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e54a724f9120c9a05c4705367407c081460a5feb", @"/Pages/User/ContactUs.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b3826b85770bdf71294972715a5ae16f9b88bebe", @"/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a897ea0afb5603696d38c428370217a6662a9019", @"/Pages/_ViewImports.cshtml")]
     public class Pages_User_ContactUs : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
     {
         #pragma warning disable 1998

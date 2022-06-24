@@ -19,8 +19,15 @@ using Hendriz_app;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\Saad\Desktop\database-project-spring-2022\Hendriz-app\Pages\_ViewImports.cshtml"
+using System.Diagnostics;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"00669adefef13dd9c411462f77be6f4c7338e7e1", @"/Pages/User/Product.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b3826b85770bdf71294972715a5ae16f9b88bebe", @"/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a897ea0afb5603696d38c428370217a6662a9019", @"/Pages/_ViewImports.cshtml")]
     public class Pages_User_Product : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
     {
         #line hidden
@@ -268,7 +275,7 @@ WriteAttributeValue("", 3210, Model.item.colors[i].color, 3210, 27, false);
 #line hidden
 #nullable disable
             WriteLiteral("                </div>\r\n\r\n                <h6>Quantity:</h6>\r\n\r\n\r\n                <div style=\"height:20px\"></div>\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "00669adefef13dd9c411462f77be6f4c7338e7e112353", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "00669adefef13dd9c411462f77be6f4c7338e7e112549", async() => {
                 WriteLiteral(@"
                     <div class=""row-cols-6"">
                         <button type=""button"" onclick=""changevalue('decrement')"">
