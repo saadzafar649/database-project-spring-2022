@@ -1468,19 +1468,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Saad\\.nuget\\packages\\": {}
+    "C:\\Users\\HP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Saad\\Desktop\\database-project-spring-2022\\Hendriz-app\\Hendriz-app.csproj",
+      "projectUniqueName": "F:\\Database Systems Lab\\Project\\Hendriz-app\\Hendriz-app.csproj",
       "projectName": "Hendriz-app",
-      "projectPath": "C:\\Users\\Saad\\Desktop\\database-project-spring-2022\\Hendriz-app\\Hendriz-app.csproj",
-      "packagesPath": "C:\\Users\\Saad\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Saad\\Desktop\\database-project-spring-2022\\Hendriz-app\\obj\\",
+      "projectPath": "F:\\Database Systems Lab\\Project\\Hendriz-app\\Hendriz-app.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "F:\\Database Systems Lab\\Project\\Hendriz-app\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Saad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1525,6 +1525,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.12, 5.0.12]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -1533,7 +1539,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

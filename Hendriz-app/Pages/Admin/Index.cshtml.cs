@@ -12,9 +12,11 @@ namespace Hendriz_app.Pages.Admin
         public List<int> id= new List<int>();
         public List<string> name= new List<string>();
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            string url = "/Admin/Dashboard";
 
+            return Redirect(url);
         }
     }
 }

@@ -1,0 +1,325 @@
+﻿@page
+@using Hendriz_app.Models;
+@model Hendriz_app.Pages.Admin.OrdersModel
+@{
+    Layout = "_admin";
+    ViewData["title"] = "hendriz";
+}
+
+<div class ="panel-heading font-charis">
+    <h1 class="text-center py-2 px-4">
+        Hendriz Admin Panel
+    </h1>
+</div>
+
+<section class="mx-3 my-3">
+    <div>
+        <div class="panel-subheading font-charis">
+            <h1 class="py-2 px-5 ml-5">
+                Order Management
+            </h1>
+
+            <!--Buttons-->
+           <ul class="order-buttons nav justify-content-start ml-5 px-4" style="margin-left:24px;">
+               <li class="nav-item">
+                   <a class="nav-link" id="button-all" onclick="showTable('all', 'button-all')">All Orders</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" id="button-pending" onclick="showTable('pending', 'button-pending')">Pending Orders</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" id="button-shipped" onclick="showTable('shipped', 'button-shipped')">Shipped Orders</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" id="button-delivered" onclick="showTable('delivered', 'button-delivered')">Delivered Orders</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" id="button-cancelled" onclick="showTable('cancelled', 'button-cancelled')">Cancelled Orders</a>
+               </li>
+            </ul>
+
+            <!--ALL ORDERS-->
+            <div id="all">
+                <table class="table Data-Table mx-5">
+                <tr class="top-row">
+                    <th scope="col">
+                        Order ID
+                    </th>
+                    <th scope="col">
+                        User ID
+                    </th>
+                    <th scope="col">
+                        Order Status
+                    </th> 
+                    <th scope="col">
+                        Order Date
+                    </th>
+                </tr>
+            @{
+                for(LinkedListNode<Order> node = Model.orders.First; node != null; node=node.Next)
+                {
+                 <tr>
+                    <td>
+                       @node.Value.orderid
+                    </td>
+                    <td>
+                       @node.Value.userid
+                    </td>
+                    <td>
+                       @node.Value.status   
+                    </td><td>
+                       @node.Value.orderDate
+                    </td>
+                 </tr>   
+
+                }
+            }
+            
+             </table>   
+             </div>
+            
+             <!--PENDING ORDERS-->
+            <div id="pending">
+                <table class="table Data-Table mx-5">
+                <tr class="top-row">
+                    <th scope="col">
+                        Order ID
+                    </th>
+                    <th scope="col">
+                        User ID
+                    </th>
+                    <th scope="col">
+                        Order Status
+                    </th> 
+                    <th scope="col">
+                        Order Date
+                    </th>
+                    <th scope="col">
+                        Actions
+                    </th>
+                </tr>
+            @{
+                for(LinkedListNode<Order> node = Model.pending.First; node != null; node=node.Next)
+                {
+                 <tr>
+                    <td>
+                       @node.Value.orderid
+                    </td>
+                    <td>
+                       @node.Value.userid
+                    </td>
+                    <td>
+                       @node.Value.status   
+                    </td><td>
+                       @node.Value.orderDate
+                    </td>
+                    <td>
+                    <form style="margin:auto;padding:0">
+                       <input type="hidden" id="custId" name="custId" value="@node.Value.orderid">
+                       <button type="button" name="action" value="ship" class="btn btn-success" onclick="setpending(this,'@node.Value.orderid')">Ship</button>
+                       <button type="button" name="action" value="cancel" class="btn btn-danger" onclick="setcancelled(this,'@node.Value.orderid')">Cancel</button>
+                    </form>   
+                       
+                    </td>
+                 </tr>   
+
+                }
+            }
+            </table>     
+            </div>
+
+             <!--CANCELLED ORDERS-->
+             <div id="cancelled">
+                <table class="table Data-Table mx-5">
+                <tr class="top-row">
+                    <th scope="col">
+                        Order ID
+                    </th>
+                    <th scope="col">
+                        User ID
+                    </th>
+                    <th scope="col">
+                        Order Status
+                    </th> 
+                    <th scope="col">
+                        Order Date
+                    </th>
+     
+                </tr>
+            @{
+                for(LinkedListNode<Order> node = Model.cancelled.First; node != null; node=node.Next)
+                {
+                 <tr>
+                    <td>
+                       @node.Value.orderid
+                    </td>
+                    <td>
+                       @node.Value.userid
+                    </td>
+                    <td>
+                       @node.Value.status   
+                    </td><td>
+                       @node.Value.orderDate
+                    </td>
+                 </tr>   
+
+                }
+            }
+            
+             </table> 
+             </div>
+
+             <!--SHIPPED ORDERS-->
+             <div id="shipped">
+                <table class="table Data-Table mx-5">
+                <tr class="top-row">
+                    <th scope="col">
+                        Order ID
+                    </th>
+                    <th scope="col">
+                        User ID
+                    </th>
+                    <th scope="col">
+                        Order Status
+                    </th> 
+                    <th scope="col">
+                        Order Date
+                    </th>
+                    <th scope="col">
+                        Actions
+                    </th>
+                </tr>
+            @{
+                for(LinkedListNode<Order> node = Model.shipped.First; node != null; node=node.Next)
+                {
+                 <tr>
+                    <td>
+                       @node.Value.orderid
+                    </td>
+                    <td>
+                       @node.Value.userid
+                    </td>
+                    <td>
+                       @node.Value.status   
+                    </td><td>
+                       @node.Value.orderDate
+                    </td>
+                    <td>
+                    <button type="button" class="btn btn-success" onclick="setdelivered(this,'@node.Value.orderid')">Mark as Delivered</button>
+                    </td>
+                 </tr>   
+
+                }
+            }
+
+            
+            
+             </table> 
+            </div>
+             <!--DELIVERED ORDERS-->
+             <div id="delivered">
+                <table class="table Data-Table mx-5">
+                <tr class="top-row">
+                    <th scope="col">
+                        Order ID
+                    </th>
+                    <th scope="col">
+                        User ID
+                    </th>
+                    <th scope="col">
+                        Order Status
+                    </th> 
+                    <th scope="col">
+                        Order Date
+                    </th>
+
+                </tr>
+            @{
+                for(LinkedListNode<Order> node = Model.delivered.First; node != null; node=node.Next)
+                {
+                 <tr>
+                    <td>
+                       @node.Value.orderid
+                    </td>
+                    <td>
+                       @node.Value.userid
+                    </td>
+                    <td>
+                       @node.Value.status   
+                    </td><td>
+                       @node.Value.orderDate
+                    </td>
+
+                 </tr>   
+
+                }
+            }
+            
+             </table> 
+         </div>    
+        </div>
+    </div>
+</section>
+
+<script src="~/lib/Scripts/orders.js"></script>
+
+
+<script>
+    function setpending(value,id){
+        $.ajax({
+                url: 'Orders?handler=SetPending',
+                type: "GET",
+                data: {
+                    "id": id,
+                    "status":value.value
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                }
+            })
+                .done(function (result) {
+                    window.location.reload();
+                });
+    }
+
+    function setcancelled(value,id){
+        $.ajax({
+                url: 'Orders?handler=SetCancelled',
+                type: "GET",
+                data: {
+                    "id": id,
+                    "status":value.value
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                }
+            })
+                .done(function (result) {
+                    window.location.reload();
+                });
+    }
+
+    function setdelivered(value,id){
+        $.ajax({
+                url: 'Orders?handler=SetDelivered',
+                type: "GET",
+                data: {
+                    "id": id,
+                    "status":value.value
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                }
+            })
+                .done(function (result) {
+                    window.location.reload();
+                });
+    }
+</script>
+<!--
+Status = 1: Delivered
+Status = 2: Shipped
+Status = 3: Pending
+Status = 4: Cancelled
+-->
+
