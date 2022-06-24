@@ -1,0 +1,149 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Charis+SIL:wght@700&family=Joan&family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Nanum+Gothic&display=swap');
+
+body {
+    background-color: #eeebff;
+    color: #061f35;
+}
+
+.font-charis {
+    font-family: 'Charis SIL', serif;
+}
+
+.sidebar-heading {
+    font-size: 200px;
+}
+
+.font-john {
+    font-family: 'Joan', serif;
+}
+
+.font-ubuntu {
+    font-family: 'Ubuntu', sans-serif;
+}
+/*For headings*/
+.font-laura {
+    font-family: 'Lora', serif;
+}
+
+/*For text*/
+.font-gothic {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/*WHOLE SIDEBAR*/
+.navigation {
+    background-color: #150f32;
+    width: 20%;
+}
+
+.navigation a, .navigation .sidebar-text {
+    color: #e1e3ed;
+}
+
+.navigation .nav-items a {
+    font-size:23px;
+}
+
+.nav-items li:first-child a {
+    border-top: 1px dashed #e1e3ed;
+}
+
+
+
+.navigation a:hover {
+    color: white;
+    background-color: #0d091f;
+}
+
+
+
+.navigation .nav-items i {
+    margin-right: 15px !important;
+}
+
+.nav-link {
+    border-bottom: 1px dashed #e1e3ed !important; 
+    border-right: 1px dashed #e1e3ed !important; 
+    border-left: 1px dashed #e1e3ed !important; 
+}
+
+/*SIDEBAR HEADING*/
+.sidebar-heading .sidebar-text {
+    font-size: 36px;
+}
+
+a.sidebar-heading {
+
+}
+
+.content {
+    width:80%;
+    padding-left:0px;
+}
+
+/*PANEL HEADING*/
+.panel-heading {
+    width: 100%;
+    color: #dbe8f6;
+    background-color: #463b7d;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+.panel-heading h1 {
+    font-size: 45px;
+}
+
+/*PANEL SUBHEADING*/
+
+.panel-subheading h1 {
+    font-size: 30px;
+}
+
+/*SECTION*/
+.section {
+
+}
+
+/*  ****ORDERS PAGE***** */
+
+.Data-Table {
+    width:80%;
+}
+
+.Data-Table td{
+    font-weight: normal;
+    font-family: 'Nanum Gothic', sans-serif;
+    
+}
+
+.Data-Table th {
+    font-family: 'Lora', serif;
+    width: 120px;
+}
+
+.Data-Table .btn {
+    font-size:12px;
+    
+}
+
+.top-row {
+    background-color: #dedafb;
+}
+
+.order-buttons .nav-item a.nav-link:hover {
+    cursor:pointer;
+}
+
+.order-buttons .nav-item a {
+    color:black;
+    background-color:white;
+}
+
+.order-buttons .nav-item a.active {
+    color:black;
+    background-color:transparent;
+}

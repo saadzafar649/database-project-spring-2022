@@ -34,8 +34,10 @@ namespace Hendriz_app.Pages
                 cmd.Connection = con;
                 con.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
+                
                 if (reader.HasRows)
                 {
+                   
                     while (reader.Read())
                     {
                         ProductCard temp = new ProductCard();
