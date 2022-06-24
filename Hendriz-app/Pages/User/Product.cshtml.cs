@@ -93,7 +93,6 @@ namespace Hendriz_app.Pages.User
                     {
                         Color itemcolor = new ();
                         itemcolor.color = reader["ColorName"].ToString();
-                        itemcolor.quantity = int.Parse(reader["quantitysold"].ToString());
                         item.colors.Add(itemcolor);
                         Console.WriteLine(itemcolor.color);
                     }
@@ -112,7 +111,7 @@ namespace Hendriz_app.Pages.User
 
         void getReviews(int id)
         {
-            
+            try
             {
 
                 OracleConnection con = new OracleConnection(Data.Connection.connection_string);
@@ -149,8 +148,7 @@ namespace Hendriz_app.Pages.User
                 }
                 con.Close();
             }
-            Console.WriteLine(reviews.Count.ToString()+"e");
-            
+            catch
             {
                 //Response.Redirect("/User/AllProducts");
             }

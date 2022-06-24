@@ -177,12 +177,18 @@
             error: function (xhr, textStatus, errorThrown) {
                 alert("Internal server error");
             }
+            
+            
         })
             .done(function (result) {
                 document.querySelectorAll('.items').forEach(item => {
                     item.remove();
                 });
-        })
+                var totalelement = document.getElementById('total');
+                total = 0;
+                totalelement.innerHTML = '$' + total.toString();
+            })
+            
         .fail(function (result) {
             console.log(result);
         });

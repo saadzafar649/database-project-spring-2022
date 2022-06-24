@@ -40,8 +40,8 @@ namespace Hendriz_app.Pages.User
                         item.category = (reader["productCategory"].ToString());
                         item.watchcount = int.Parse(reader["watchCount"].ToString());
                         item.price = int.Parse(reader["price"].ToString());
-                        item.stars = int.Parse(((reader["Stars"].ToString() == "") ? "0" : reader["Stars"].ToString()));
-                        item.reviewCount = int.Parse(reader["reviewcount"].ToString());
+                        item.stars = Convert.ToInt32(float.Parse(((reader["Stars"].ToString() == "") ? "0" : reader["Stars"].ToString())));
+                        item.reviewCount = int.Parse(((reader["Stars"].ToString() == "") ? "0" : reader["reviewcount"].ToString()));
                         allProducts.Add(item);
 
                         allCategories[reader["productCategory"].ToString()] = reader["CategoryName"].ToString();

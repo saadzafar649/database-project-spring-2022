@@ -89,7 +89,7 @@ a.filled-button {
 }
 */
 .about-heading {
-    background-image: url(../images/about-heading.jpg);
+    background-image: url(/assets/images/about-heading.jpg);
 }
 
 .contact-heading {

@@ -45,8 +45,8 @@ namespace Hendriz_app.Pages
                         temp.image = (reader["imageLink"].ToString());
                         temp.watchcount = int.Parse(reader["watchCount"].ToString());
                         temp.price = int.Parse(reader["price"].ToString());
-                        temp.stars = int.Parse(((reader["Stars"].ToString()=="")?"0": reader["Stars"].ToString()));
-                        temp.reviewCount = int.Parse(reader["reviewcount"].ToString());
+                        temp.stars = Convert.ToInt32(float.Parse(((reader["Stars"].ToString() == "") ? "0" : reader["Stars"].ToString())));
+                        temp.reviewCount = int.Parse(((reader["Stars"].ToString() == "") ? "0" : reader["reviewcount"].ToString()));
                         Latestproducts.Add(temp);
                     }
                 }

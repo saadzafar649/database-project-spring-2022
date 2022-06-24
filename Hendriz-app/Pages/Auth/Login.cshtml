@@ -27,6 +27,7 @@
 
 
         <div class="right">
+
                 <h5>Login</h5>
                 <p>Don't have an account? <a href="#">Create Your Account</a> it takes less than a minute</p>
                 <div class="inputs">
@@ -37,11 +38,9 @@
 
                 <br><br>
 
-                <div class="remember-me--forget-password">
-                </div>
 
                 <br>
-                <button onclick="authenticate()" type="submit">Login</button>
+                <button onclick="authenticate()" type="submit" style="cursor:pointer">Login</button>
             
         </div>
 
@@ -61,7 +60,7 @@
                     "password": document.getElementById('password').value
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    console.log(errorThrown);
+                    alert("Enter correct username and password");
                 }
             })
                 .done(function (result) {
